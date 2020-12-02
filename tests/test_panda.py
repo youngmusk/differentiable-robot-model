@@ -340,6 +340,7 @@ class TestRobotModel:
         )
 
         model_qdd = np.asarray(model_qdd.detach().squeeze())
+        import pdb; pdb.set_trace()
         if JOINT_DAMPING == 0.0:
             # we can only test this if joint damping is zero,
             # if it is non-zero the pybullet forward dynamics and inverse dynamics call will not be exactly the

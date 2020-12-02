@@ -51,7 +51,7 @@ torch.manual_seed(0)
 abs_config_dir = os.path.abspath("../conf")
 with initialize_config_dir(config_dir=abs_config_dir):
     # compose from config.yaml, this composes a bunch of defaults in:
-    cfg = hydra_compose(config_name="torch_robot_model_gt_panda.yaml")
+    cfg = hydra_compose(config_name="torch_robot_model_gt_panda_no_gripper.yaml")
 
 num_joints = p.getNumJoints(robot_id)
 for i in range(num_joints):
