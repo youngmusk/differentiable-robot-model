@@ -9,6 +9,30 @@ import pybullet as p
 import diff_robot_data
 from differentiable_robot_model.differentiable_robot_model import DifferentiableRobotModel, LearnableRigidBodyConfig
 
+# param = (rel_urdf_path, ee_list)
+# ee_list = [(ee_link_idx, ee_link_name), ...]
+@pytest.fixture(params=[
+    (
+        "kuka_iiwa/urdf/iiwa7.urdf",
+        [(7, "iiwa_link_ee")],
+    ),
+    (
+        "panda_description/urdf/panda_no_gripper.urdf",
+        [(7, "panda_virtual_ee_link")],
+    ),
+    (
+        "2link_robot.urdf",
+        [(2, "endEffector")],
+    ),
+    (
+        "allegro/urdf/allegro_hand_description_left.urdf",
+        [(4, "link_11.0_tip"), (9, "link_7.0_tip"), (14, "link_3.0_tip"), (19, "link_15.0_tip")]
+    ),
+])
+def robot_metadata(request):
+    pass #TODO
+
+
 robot_description_folder = diff_robot_data.__path__[0]
 
 np.set_printoptions(precision=3, suppress=True)
@@ -112,6 +136,14 @@ def setup_dict():
     }
 
 
+"""
+@pytest.mark.parametrize("ee_link_idx, ee_link_name", [
+    (4, "link_11.0_tip"), 
+    (9, "link_7.0_tip"), 
+    (14, "link_3.0_tip"), 
+    (19, "link_15.0_tip"), # thumb
+])
+"""
 @pytest.mark.parametrize("ee_link_idx, ee_link_name", [
     (7, "iiwa_link_ee"), 
 ])
